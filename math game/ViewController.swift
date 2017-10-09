@@ -13,38 +13,38 @@ class ViewController: UIViewController {
     var number1 = 0
     var number2 = 0
     var correctAnswer = 0
-    
+    @IBOutlet weak var textInput: UITextField!
+    @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        generateEquation()
     }
 
     //when the button is pressed it sets the random numbers and picks an operator
     @IBAction func checkAnswer(_ sender: Any) {
-        number1 = Int(arc4random_uniform(UInt32(100)))
-        number2 = Int(arc4random_uniform(UInt32(100)))
-        let op = Int(arc4random_uniform(UInt32(2)))
-        checkAnswer(op: op)
+        generateEquation()
     }
     
     //this prints the equation and the correct answer
-    func checkAnswer(op: Int){
+    func generateEquation(){
+    
+        number1 = Int(arc4random_uniform(UInt32(100)))
+        number2 = Int(arc4random_uniform(UInt32(100)))
+        let op = Int(arc4random_uniform(UInt32(3)))
+        
         if (op == 0) {
             correctAnswer =  number1 + number2
-            print("\(number1) + \(number2)")
-            print(correctAnswer)
+            label.text = "\(number1) + \(number2)"
         }
             
         else if (op == 1) {
             correctAnswer = number1 - number2
-            print("\(number1) - \(number2)")
-            print(correctAnswer)
+            label.text = "\(number1) - \(number2)"
         }
             
         else if (op == 2) {
             correctAnswer = number1 * number2
-            print("\(number1) * \(number2)")
-            print(correctAnswer)
+            label.text = "\(number1) * \(number2)"
         }
         
     }
