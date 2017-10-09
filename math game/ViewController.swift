@@ -15,15 +15,43 @@ class ViewController: UIViewController {
     var correctAnswer = 0
     @IBOutlet weak var textInput: UITextField!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var outcome: UILabel!
+    @IBOutlet weak var nextQuestion: UIButton!
+    @IBOutlet weak var checkAnswer: UIButton!
+    
+    @IBAction func nextQuestion(_ sender: Any) {
+        label.isHidden = false
+        checkAnswer.isHidden = false
+        outcome.isHidden = true
+        nextQuestion.isHidden = true
+        generateEquation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        outcome.isHidden = true
+        nextQuestion.isHidden = true
+        checkAnswer.isHidden = false
+        label.isHidden = false
         generateEquation()
     }
 
     //when the button is pressed it sets the random numbers and picks an operator
     @IBAction func checkAnswer(_ sender: Any) {
-        generateEquation()
+        label.isHidden = true
+        checkAnswer.isHidden = true
+        outcome.isHidden = false
+        nextQuestion.isHidden = false
+        textInput.text = ""
+        if (correctAnswer == Int(textInput.text!)) {
+            outcome.text = "Correct!"
+        }
+        else {
+            outcome.text = "Wrong"
+        }
     }
+    
+    
     
     //this prints the equation and the correct answer
     func generateEquation(){
